@@ -1,0 +1,104 @@
+{
+    "name": "stripe",
+    "label": "Stripe Package",
+    "dependencies": [
+        {
+            "type": "service",
+            "name": "http",
+            "version": "v1.2.6",
+            "instanceId": "shared"
+        }
+    ],
+    "configuration": [
+        {
+            "label": "Publishable key",
+            "name": "publishableKey",
+            "type": "text",
+            "required": true
+        },
+        {
+            "label": "Secret key",
+            "name": "secretKey",
+            "type": "password",
+            "required": true
+        },
+        {
+            "name": "webhook",
+            "label": "Webhook URL",
+            "type": "label",
+            "value": "@config.WEBHOOK_URL"
+        },
+        {
+            "label": "Check webhooks sign",
+            "name": "checkWebhooksSign",
+            "type": "toggle",
+            "defaultValue": false
+        },
+        {
+            "label": "Webhooks secret",
+            "name": "webhooksSecret",
+            "type": "password",
+            "required": "config.checkWebhooksSign==true"
+        },
+        {
+            "label": "Max Concurrent Calls",
+            "name": "maxConcurrentCalls",
+            "type": "text",
+            "required": true,
+            "defaultValue": "3",
+            "typeOptions": {
+                "validation": "number"
+            }
+        },
+        {
+            "label": "Max Retries",
+            "name": "maxRetries",
+            "type": "text",
+            "required": true,
+            "defaultValue": "6",
+            "typeOptions": {
+                "validation": "number"
+            }
+        },
+        {
+            "name": "STRIPE_API_BASE_URL",
+            "label": "Stripe Api Url",
+            "type": "label",
+            "value": "https://api.stripe.com/"
+        }
+    ],
+    "events": [
+        {
+            "label": "Webhook",
+            "name": "webhook",
+            "description": "Happens when a Stripe hits the endpoint URL."
+        }
+    ],
+    "metadata": [
+        {
+            "type": "script",
+            "namespace": "api",
+            "path": "/scripts/functions.js"
+        },
+        {
+            "type": "flowStep",
+            "namespace": "steps",
+            "path": "/flowSteps/apiCallStripe"
+        },
+        {
+            "type": "flowStep",
+            "namespace": "steps",
+            "path": "/flowSteps/createPaymentIntentsStripe"
+        },
+        {
+            "type": "flowStep",
+            "namespace": "steps",
+            "path": "/flowSteps/listAllPaymentIntentsStripe"
+        },
+        {
+            "type": "flowStep",
+            "namespace": "steps",
+            "path": "/flowSteps/cancelPaymentIntentsStripe"
+        }
+    ]
+}

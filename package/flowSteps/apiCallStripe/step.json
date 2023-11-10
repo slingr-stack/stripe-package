@@ -1,0 +1,1264 @@
+{
+  "label": "API call to stripe",
+  "name": "apiCallStripe",
+  "category": "integrations",
+  "description": "This flow step will send generic request to stripe",
+  "inputs": [
+    {
+      "label": "Url",
+      "name": "url",
+      "description": "The method and path to which this endpoint is to send requests in a generic way.",
+      "type": "urlParams",
+      "required": "true",
+      "options": {
+        "type": "dropDown",
+        "possibleValues": [
+            {
+              "label": "POST /v1/account_links"
+            },
+            {
+              "label": "POST /v1/accounts"
+            },
+            {
+              "label": "POST /v1/accounts/{account}"
+            },
+            {
+              "label": "POST /v1/accounts/{account}/capabilities/{capability}"
+            },
+            {
+              "label": "POST /v1/accounts/{account}/external_accounts"
+            },
+            {
+              "label": "POST /v1/accounts/{account}/external_accounts/{id}"
+            },
+            {
+              "label": "POST /v1/accounts/{account}/login_links"
+            },
+            {
+              "label": "POST /v1/accounts/{account}/reject"
+            },
+            {
+              "label": "POST /v1/application_fees/{id}/refund"
+            },
+            {
+              "label": "POST /v1/application_fees/{id}/refunds"
+            },
+            {
+              "label": "POST /v1/application_fees/{fee}/refunds/{id}"
+            },
+            {
+              "label": "POST /v1/charges"
+            },
+            {
+              "label": "POST /v1/charges/{charge}"
+            },
+            {
+              "label": "POST /v1/charges/{charge}/capture"
+            },
+            {
+              "label": "POST /v1/checkout/sessions"
+            },
+            {
+              "label": "POST /v1/checkout/sessions/{session}/expire"
+            },
+            {
+              "label": "POST /v1/coupons"
+            },
+            {
+              "label": "POST /v1/coupons/{coupon}"
+            },
+            {
+              "label": "POST /v1/credit_notes"
+            },
+            {
+              "label": "POST /v1/credit_notes/{id}"
+            },
+            {
+              "label": "POST /v1/credit_notes/{id}/void"
+            },
+            {
+              "label": "POST /v1/customers/{customer}/balance_transactions"
+            },
+            {
+              "label": "POST /v1/customers/{customer}/balance_transactions/{transaction}"
+            },
+            {
+              "label": "POST /v1/customers/{customer}/cash_balance"
+            },
+            {
+              "label": "POST /v1/billing_portal/configurations"
+            },
+            {
+              "label": "POST /v1/billing_portal/configurations/{configuration}"
+            },
+            {
+              "label": "POST /v1/billing_portal/sessions"
+            },
+            {
+              "label": "POST /v1/customers/{customer}/tax_ids"
+            },
+            {
+              "label": "POST /v1/customers"
+            },
+            {
+              "label": "POST /v1/customers/{customer}"
+            },
+            {
+              "label": "POST /v1/disputes/{dispute}"
+            },
+            {
+              "label": "POST /v1/disputes/{dispute}/close"
+            },
+            {
+              "label": "POST /v1/file_links"
+            },
+            {
+              "label": "POST /v1/file_links/{link}"
+            },
+            {
+              "label": "POST https://files.stripe.com/v1/files"
+            },
+            {
+              "label": "POST /v1/financial_connections/accounts/{account}/disconnect"
+            },
+            {
+              "label": "POST /v1/financial_connections/accounts/{account}/refresh"
+            },
+            {
+              "label": "POST /v1/financial_connections/sessions"
+            },
+            {
+              "label": "POST /v1/identity/verification_sessions"
+            },
+            {
+              "label": "POST /v1/identity/verification_sessions/{session}"
+            },
+            {
+              "label": "POST /v1/identity/verification_sessions/{session}/cancel"
+            },
+            {
+              "label": "POST /v1/identity/verification_sessions/{session}/redact"
+            },
+            {
+              "label": "POST /v1/invoiceitems"
+            },
+            {
+              "label": "POST /v1/invoiceitems/{invoiceitem}"
+            },
+            {
+              "label": "POST /v1/invoices"
+            },
+            {
+              "label": "POST /v1/invoices/{invoice}"
+            },
+            {
+              "label": "POST /v1/invoices/{invoice}/finalize"
+            },
+            {
+              "label": "POST /v1/invoices/{invoice}/mark_uncollectible"
+            },
+            {
+              "label": "POST /v1/invoices/{invoice}/pay"
+            },
+            {
+              "label": "POST /v1/invoices/{invoice}/send"
+            },
+            {
+              "label": "POST /v1/invoices/{invoice}/void"
+            },
+            {
+              "label": "POST /v1/issuing/authorizations/{authorization}"
+            },
+            {
+              "label": "POST /v1/issuing/authorizations/{authorization}/approve"
+            },
+            {
+              "label": "POST /v1/issuing/authorizations/{authorization}/decline"
+            },
+            {
+              "label": "POST /v1/issuing/cardholders"
+            },
+            {
+              "label": "POST /v1/issuing/cardholders/{cardholder}"
+            },
+            {
+              "label": "POST /v1/issuing/cards"
+            },
+            {
+              "label": "POST /v1/issuing/cards/{card}"
+            },
+            {
+              "label": "POST /v1/test_helpers/issuing/cards/{card}/shipping/fail"
+            },
+            {
+              "label": "POST /v1/test_helpers/issuing/cards/{card}/shipping/return"
+            },
+            {
+              "label": "POST /v1/test_helpers/issuing/cards/{card}/shipping/ship"
+            },
+            {
+              "label": "POST /v1/issuing/disputes"
+            },
+            {
+              "label": "POST /v1/issuing/disputes/{dispute}"
+            },
+            {
+              "label": "POST /v1/issuing/disputes/{dispute}/submit"
+            },
+            {
+              "label": "POST /v1/issuing/transactions/{transaction}"
+            },
+            {
+              "label": "POST /v1/payment_intents"
+            },
+            {
+              "label": "POST /v1/payment_intents/{intent}"
+            },
+            {
+              "label": "POST /v1/payment_intents/{intent}/apply_customer_balance"
+            },
+            {
+              "label": "POST /v1/payment_intents/{intent}/cancel"
+            },
+            {
+              "label": "POST /v1/payment_intents/{intent}/capture"
+            },
+            {
+              "label": "POST /v1/payment_intents/{intent}/confirm"
+            },
+            {
+              "label": "POST /v1/payment_intents/{intent}/increment_authorization"
+            },
+            {
+              "label": "POST /v1/payment_intents/{intent}/verify_microdeposits"
+            },
+            {
+              "label": "POST /v1/payment_links"
+            },
+            {
+              "label": "POST /v1/payment_links/{payment_link}"
+            },
+            {
+              "label": "POST /v1/payment_methods"
+            },
+            {
+              "label": "POST /v1/payment_methods/{payment_method}"
+            },
+            {
+              "label": "POST /v1/payment_methods/{payment_method}/attach"
+            },
+            {
+              "label": "POST /v1/payment_methods/{payment_method}/detach"
+            },
+            {
+              "label": "POST /v1/payouts"
+            },
+            {
+              "label": "POST /v1/payouts/{payout}"
+            },
+            {
+              "label": "POST /v1/payouts/{payout}/cancel"
+            },
+            {
+              "label": "POST /v1/payouts/{payout}/reverse"
+            },
+            {
+              "label": "POST /v1/accounts/{account}/persons"
+            },
+            {
+              "label": "POST /v1/accounts/{account}/persons/{person}"
+            },
+            {
+              "label": "POST /v1/prices"
+            },
+            {
+              "label": "POST /v1/prices/{price}"
+            },
+            {
+              "label": "POST /v1/products"
+            },
+            {
+              "label": "POST /v1/products/{id}"
+            },
+            {
+              "label": "POST /v1/promotion_codes"
+            },
+            {
+              "label": "POST /v1/promotion_codes/{promotion_code}"
+            },
+            {
+              "label": "POST /v1/quotes"
+            },
+            {
+              "label": "POST /v1/quotes/{quote}"
+            },
+            {
+              "label": "POST /v1/quotes/{quote}/accept"
+            },
+            {
+              "label": "POST /v1/quotes/{quote}/cancel"
+            },
+            {
+              "label": "POST /v1/quotes/{quote}/finalize"
+            },
+            {
+              "label": "POST /v1/reviews/{review}/approve"
+            },
+            {
+              "label": "POST /v1/radar/value_lists"
+            },
+            {
+              "label": "POST /v1/radar/value_lists/{value_list}"
+            },
+            {
+              "label": "POST /v1/radar/value_list_items"
+            },
+            {
+              "label": "POST /v1/refunds"
+            },
+            {
+              "label": "POST /v1/refunds/{refund}"
+            },
+            {
+              "label": "POST /v1/reporting/report_runs"
+            },
+            {
+              "label": "POST /v1/apps/secrets"
+            },
+            {
+              "label": "POST /v1/apps/secrets/delete"
+            },
+            {
+              "label": "POST /v1/setup_intents"
+            },
+            {
+              "label": "POST /v1/setup_intents/{intent}"
+            },
+            {
+              "label": "POST /v1/setup_intents/{intent}/cancel"
+            },
+            {
+              "label": "POST /v1/setup_intents/{intent}/confirm"
+            },
+            {
+              "label": "POST /v1/setup_intents/{intent}/verify_microdeposits"
+            },
+            {
+              "label": "POST /v1/shipping_rates"
+            },
+            {
+              "label": "POST /v1/shipping_rates/{shipping_rate_token}"
+            },
+            {
+              "label": "POST /v1/skus"
+            },
+            {
+              "label": "POST /v1/skus/{id}"
+            },
+            {
+              "label": "POST /v1/customers/{customer}/sources"
+            },
+            {
+              "label": "POST /v1/customers/{customer}/sources/{id}"
+            },
+            {
+              "label": "POST /v1/customers/{customer}/sources/{id}/verify"
+            },
+            {
+              "label": "POST /v1/sources"
+            },
+            {
+              "label": "POST /v1/sources/{source}"
+            },
+            {
+              "label": "POST /v1/subscription_items"
+            },
+            {
+              "label": "POST /v1/subscription_items/{item}"
+            },
+            {
+              "label": "POST /v1/subscription_items/{subscription_item}/usage_records"
+            },
+            {
+              "label": "POST /v1/subscription_schedules"
+            },
+            {
+              "label": "POST /v1/subscription_schedules/{schedule}"
+            },
+            {
+              "label": "POST /v1/subscription_schedules/{schedule}/cancel"
+            },
+            {
+              "label": "POST /v1/subscription_schedules/{schedule}/release"
+            },
+            {
+              "label": "POST /v1/subscriptions"
+            },
+            {
+              "label": "POST /v1/subscriptions/{subscription_exposed_id}"
+            },
+            {
+              "label": "POST /v1/tax_rates"
+            },
+            {
+              "label": "POST /v1/tax_rates/{tax_rate}"
+            },
+            {
+              "label": "POST /v1/terminal/configurations"
+            },
+            {
+              "label": "POST /v1/terminal/configurations/{configuration}"
+            },
+            {
+              "label": "POST /v1/terminal/connection_tokens"
+            },
+            {
+              "label": "POST /v1/terminal/locations"
+            },
+            {
+              "label": "POST /v1/terminal/locations/{location}"
+            },
+            {
+              "label": "POST /v1/terminal/readers"
+            },
+            {
+              "label": "POST /v1/terminal/readers/{reader}"
+            },
+            {
+              "label": "POST /v1/terminal/readers/{reader}/cancel_action"
+            },
+            {
+              "label": "POST /v1/terminal/readers/{reader}/process_payment_intent"
+            },
+            {
+              "label": "POST /v1/terminal/readers/{reader}/process_setup_intent"
+            },
+            {
+              "label": "POST /v1/terminal/readers/{reader}/set_reader_display"
+            },
+            {
+              "label": "POST /v1/test_helpers/terminal/readers/{reader}/present_payment_method"
+            },
+            {
+              "label": "POST /v1/test_helpers/test_clocks"
+            },
+            {
+              "label": "POST /v1/test_helpers/test_clocks/{test_clock}/advance"
+            },
+            {
+              "label": "POST /v1/tokens"
+            },
+            {
+              "label": "POST /v1/topups"
+            },
+            {
+              "label": "POST /v1/topups/{topup}"
+            },
+            {
+              "label": "POST /v1/topups/{topup}/cancel"
+            },
+            {
+              "label": "POST /v1/transfers/{id}/reversals"
+            },
+            {
+              "label": "POST /v1/transfers/{transfer}/reversals/{id}"
+            },
+            {
+              "label": "POST /v1/transfers"
+            },
+            {
+              "label": "POST /v1/transfers/{transfer}"
+            },
+            {
+              "label": "POST /v1/treasury/credit_reversals"
+            },
+            {
+              "label": "POST /v1/treasury/debit_reversals"
+            },
+            {
+              "label": "POST /v1/treasury/financial_accounts/{financial_account}/features"
+            },
+            {
+              "label": "POST /v1/treasury/financial_accounts"
+            },
+            {
+              "label": "POST /v1/treasury/financial_accounts/{financial_account}"
+            },
+            {
+              "label": "POST /v1/test_helpers/treasury/inbound_transfers/{id}/fail"
+            },
+            {
+              "label": "POST /v1/test_helpers/treasury/inbound_transfers/{id}/succeed"
+            },
+            {
+              "label": "POST /v1/treasury/inbound_transfers"
+            },
+            {
+              "label": "POST /v1/treasury/inbound_transfers/{inbound_transfer}/cancel"
+            },
+            {
+              "label": "POST /v1/test_helpers/treasury/outbound_payments/{id}/fail"
+            },
+            {
+              "label": "POST /v1/test_helpers/treasury/outbound_payments/{id}/post"
+            },
+            {
+              "label": "POST /v1/test_helpers/treasury/outbound_payments/{id}/return"
+            },
+            {
+              "label": "POST /v1/treasury/outbound_payments"
+            },
+            {
+              "label": "POST /v1/treasury/outbound_payments/{id}/cancel"
+            },
+            {
+              "label": "POST /v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/fail"
+            },
+            {
+              "label": "POST /v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/post"
+            },
+            {
+              "label": "POST /v1/test_helpers/treasury/outbound_transfers/{outbound_transfer}/return"
+            },
+            {
+              "label": "POST /v1/treasury/outbound_transfers"
+            },
+            {
+              "label": "POST /v1/treasury/outbound_transfers/{outbound_transfer}/cancel"
+            },
+            {
+              "label": "POST /v1/test_helpers/treasury/received_credits"
+            },
+            {
+              "label": "POST /v1/test_helpers/treasury/received_debits"
+            },
+            {
+              "label": "POST /v1/webhook_endpoints"
+            },
+            {
+              "label": "POST /v1/webhook_endpoints/{webhook_endpoint}"
+            },
+            {
+              "label": "GET /v1/accounts"
+            },
+            {
+              "label": "GET /v1/accounts/{account}"
+            },
+            {
+              "label": "GET /v1/accounts/{account}/capabilities"
+            },
+            {
+              "label": "GET /v1/accounts/{account}/capabilities/{capability}"
+            },
+            {
+              "label": "GET /v1/accounts/{account}/external_accounts"
+            },
+            {
+              "label": "GET /v1/accounts/{account}/external_accounts/{id}"
+            },
+            {
+              "label": "GET /v1/application_fees/{id}/refunds"
+            },
+            {
+              "label": "GET /v1/application_fees/{fee}/refunds/{id}"
+            },
+            {
+              "label": "GET /v1/application_fees"
+            },
+            {
+              "label": "GET /v1/application_fees/{id}"
+            },
+            {
+              "label": "GET /v1/balance"
+            },
+            {
+              "label": "GET /v1/balance_transactions"
+            },
+            {
+              "label": "GET /v1/balance_transactions/{id}"
+            },
+            {
+              "label": "GET /v1/charges"
+            },
+            {
+              "label": "GET /v1/charges/{charge}"
+            },
+            {
+              "label": "GET /v1/charges/search"
+            },
+            {
+              "label": "GET /v1/checkout/sessions"
+            },
+            {
+              "label": "GET /v1/checkout/sessions/{session}"
+            },
+            {
+              "label": "GET /v1/checkout/sessions/{session}/line_items"
+            },
+            {
+              "label": "GET /v1/country_specs"
+            },
+            {
+              "label": "GET /v1/country_specs/{country}"
+            },
+            {
+              "label": "GET /v1/coupons"
+            },
+            {
+              "label": "GET /v1/coupons/{coupon}"
+            },
+            {
+              "label": "GET /v1/credit_notes"
+            },
+            {
+              "label": "GET /v1/credit_notes/{id}"
+            },
+            {
+              "label": "GET /v1/credit_notes/preview"
+            },
+            {
+              "label": "GET /v1/credit_notes/preview/lines"
+            },
+            {
+              "label": "GET /v1/credit_notes/{credit_note}/lines"
+            },
+            {
+              "label": "GET /v1/customers/{customer}/balance_transactions"
+            },
+            {
+              "label": "GET /v1/customers/{customer}/balance_transactions/{transaction}"
+            },
+            {
+              "label": "GET /v1/customers/{customer}/cash_balance"
+            },
+            {
+              "label": "GET /v1/customers/{customer}/cash_balance_transactions"
+            },
+            {
+              "label": "GET /v1/customers/{customer}/cash_balance_transactions/{transaction}"
+            },
+            {
+              "label": "GET /v1/billing_portal/configurations"
+            },
+            {
+              "label": "GET /v1/billing_portal/configurations/{configuration}"
+            },
+            {
+              "label": "GET /v1/customers/{customer}/tax_ids"
+            },
+            {
+              "label": "GET /v1/customers/{customer}/tax_ids/{id}"
+            },
+            {
+              "label": "GET /v1/customers"
+            },
+            {
+              "label": "GET /v1/customers/{customer}"
+            },
+            {
+              "label": "GET /v1/customers/search"
+            },
+            {
+              "label": "GET /v1/customers/{customer}/payment_methods/{payment_method}"
+            },
+            {
+              "label": "GET /v1/customers/{customer}/payment_methods"
+            },
+            {
+              "label": "GET /v1/disputes"
+            },
+            {
+              "label": "GET /v1/disputes/{dispute}"
+            },
+            {
+              "label": "GET /v1/events"
+            },
+            {
+              "label": "GET /v1/events/{id}"
+            },
+            {
+              "label": "GET /v1/exchange_rates"
+            },
+            {
+              "label": "GET /v1/exchange_rates/{rate_id}"
+            },
+            {
+              "label": "GET /v1/file_links"
+            },
+            {
+              "label": "GET /v1/file_links/{link}"
+            },
+            {
+              "label": "GET /v1/files"
+            },
+            {
+              "label": "GET /v1/files/{file}"
+            },
+            {
+              "label": "GET /v1/financial_connections/accounts"
+            },
+            {
+              "label": "GET /v1/financial_connections/accounts/{account}"
+            },
+            {
+              "label": "GET /v1/financial_connections/sessions/{session}"
+            },
+            {
+              "label": "GET /v1/identity/verification_reports"
+            },
+            {
+              "label": "GET /v1/identity/verification_reports/{report}"
+            },
+            {
+              "label": "GET /v1/identity/verification_sessions"
+            },
+            {
+              "label": "GET /v1/identity/verification_sessions/{session}"
+            },
+            {
+              "label": "GET /v1/invoiceitems"
+            },
+            {
+              "label": "GET /v1/invoiceitems/{invoiceitem}"
+            },
+            {
+              "label": "GET /v1/invoices"
+            },
+            {
+              "label": "GET /v1/invoices/{invoice}"
+            },
+            {
+              "label": "GET /v1/invoices/search"
+            },
+            {
+              "label": "GET /v1/invoices/upcoming"
+            },
+            {
+              "label": "GET /v1/invoices/upcoming/lines"
+            },
+            {
+              "label": "GET /v1/invoices/{invoice}/lines"
+            },
+            {
+              "label": "GET /v1/issuing/authorizations"
+            },
+            {
+              "label": "GET /v1/issuing/authorizations/{authorization}"
+            },
+            {
+              "label": "GET /v1/issuing/cardholders"
+            },
+            {
+              "label": "GET /v1/issuing/cardholders/{cardholder}"
+            },
+            {
+              "label": "GET /v1/issuing/cards"
+            },
+            {
+              "label": "GET /v1/issuing/cards/{card}"
+            },
+            {
+              "label": "GET /v1/issuing/disputes"
+            },
+            {
+              "label": "GET /v1/issuing/disputes/{dispute}"
+            },
+            {
+              "label": "GET /v1/issuing/transactions"
+            },
+            {
+              "label": "GET /v1/issuing/transactions/{transaction}"
+            },
+            {
+              "label": "GET /v1/mandates/{mandate}"
+            },
+            {
+              "label": "GET /v1/payment_intents"
+            },
+            {
+              "label": "GET /v1/payment_intents/{intent}"
+            },
+            {
+              "label": "GET /v1/payment_intents/search"
+            },
+            {
+              "label": "GET /v1/payment_links"
+            },
+            {
+              "label": "GET /v1/payment_links/{payment_link}"
+            },
+            {
+              "label": "GET /v1/payment_links/{payment_link}/line_items"
+            },
+            {
+              "label": "GET /v1/payment_methods"
+            },
+            {
+              "label": "GET /v1/payment_methods/{payment_method}"
+            },
+            {
+              "label": "GET /v1/payouts"
+            },
+            {
+              "label": "GET /v1/payouts/{payout}"
+            },
+            {
+              "label": "GET /v1/accounts/{account}/persons"
+            },
+            {
+              "label": "GET /v1/accounts/{account}/persons/{person}"
+            },
+            {
+              "label": "GET /v1/prices"
+            },
+            {
+              "label": "GET /v1/prices/{price}"
+            },
+            {
+              "label": "GET /v1/prices/search"
+            },
+            {
+              "label": "GET /v1/products"
+            },
+            {
+              "label": "GET /v1/products/{id}"
+            },
+            {
+              "label": "GET /v1/products/search"
+            },
+            {
+              "label": "GET /v1/promotion_codes"
+            },
+            {
+              "label": "GET /v1/promotion_codes/{promotion_code}"
+            },
+            {
+              "label": "GET /v1/quotes/{quote}/computed_upfront_line_items"
+            },
+            {
+              "label": "GET /v1/quotes/{quote}/line_items"
+            },
+            {
+              "label": "GET /v1/quotes"
+            },
+            {
+              "label": "GET /v1/quotes/{quote}"
+            },
+            {
+              "label": "GET /v1/quotes/{quote}/pdf"
+            },
+            {
+              "label": "GET /v1/radar/early_fraud_warnings"
+            },
+            {
+              "label": "GET /v1/radar/early_fraud_warnings/{early_fraud_warning}"
+            },
+            {
+              "label": "GET /v1/reviews"
+            },
+            {
+              "label": "GET /v1/reviews/{review}"
+            },
+            {
+              "label": "GET /v1/radar/value_lists"
+            },
+            {
+              "label": "GET /v1/radar/value_lists/{value_list}"
+            },
+            {
+              "label": "GET /v1/radar/value_list_items"
+            },
+            {
+              "label": "GET /v1/radar/value_list_items/{item}"
+            },
+            {
+              "label": "GET /v1/refunds"
+            },
+            {
+              "label": "GET /v1/refunds/{refund}"
+            },
+            {
+              "label": "GET /v1/reporting/report_runs"
+            },
+            {
+              "label": "GET /v1/reporting/report_runs/{report_run}"
+            },
+            {
+              "label": "GET /v1/reporting/report_types"
+            },
+            {
+              "label": "GET /v1/reporting/report_types/{report_type}"
+            },
+            {
+              "label": "GET /v1/apps/secrets"
+            },
+            {
+              "label": "GET /v1/apps/secrets/find"
+            },
+            {
+              "label": "GET /v1/setup_attempts"
+            },
+            {
+              "label": "GET /v1/setup_intents"
+            },
+            {
+              "label": "GET /v1/setup_intents/{intent}"
+            },
+            {
+              "label": "GET /v1/shipping_rates"
+            },
+            {
+              "label": "GET /v1/shipping_rates/{shipping_rate_token}"
+            },
+            {
+              "label": "GET /v1/sigma/scheduled_query_runs"
+            },
+            {
+              "label": "GET /v1/sigma/scheduled_query_runs/{scheduled_query_run}"
+            },
+            {
+              "label": "GET /v1/skus"
+            },
+            {
+              "label": "GET /v1/skus/{id}"
+            },
+            {
+              "label": "GET /v1/customers/{customer}/sources"
+            },
+            {
+              "label": "GET /v1/customers/{customer}/sources/{id}"
+            },
+            {
+              "label": "GET /v1/sources/{source}"
+            },
+            {
+              "label": "GET /v1/subscription_items"
+            },
+            {
+              "label": "GET /v1/subscription_items/{item}"
+            },
+            {
+              "label": "GET /v1/subscription_items/{subscription_item}/usage_record_summaries"
+            },
+            {
+              "label": "GET /v1/subscription_schedules"
+            },
+            {
+              "label": "GET /v1/subscription_schedules/{schedule}"
+            },
+            {
+              "label": "GET /v1/subscriptions"
+            },
+            {
+              "label": "GET /v1/subscriptions/{subscription_exposed_id}"
+            },
+            {
+              "label": "GET /v1/subscriptions/search"
+            },
+            {
+              "label": "GET /v1/tax_rates"
+            },
+            {
+              "label": "GET /v1/tax_rates/{tax_rate}"
+            },
+            {
+              "label": "GET /v1/terminal/configurations"
+            },
+            {
+              "label": "GET /v1/terminal/configurations/{configuration}"
+            },
+            {
+              "label": "GET /v1/terminal/locations"
+            },
+            {
+              "label": "GET /v1/terminal/locations/{location}"
+            },
+            {
+              "label": "GET /v1/terminal/readers"
+            },
+            {
+              "label": "GET /v1/terminal/readers/{reader}"
+            },
+            {
+              "label": "GET /v1/test_helpers/test_clocks"
+            },
+            {
+              "label": "GET /v1/test_helpers/test_clocks/{test_clock}"
+            },
+            {
+              "label": "GET /v1/tokens/{token}"
+            },
+            {
+              "label": "GET /v1/topups"
+            },
+            {
+              "label": "GET /v1/topups/{topup}"
+            },
+            {
+              "label": "GET /v1/transfers/{id}/reversals"
+            },
+            {
+              "label": "GET /v1/transfers/{transfer}/reversals/{id}"
+            },
+            {
+              "label": "GET /v1/transfers"
+            },
+            {
+              "label": "GET /v1/transfers/{transfer}"
+            },
+            {
+              "label": "GET /v1/treasury/credit_reversals"
+            },
+            {
+              "label": "GET /v1/treasury/credit_reversals/{credit_reversal}"
+            },
+            {
+              "label": "GET /v1/treasury/debit_reversals"
+            },
+            {
+              "label": "GET /v1/treasury/debit_reversals/{debit_reversal}"
+            },
+            {
+              "label": "GET /v1/treasury/financial_accounts/{financial_account}/features"
+            },
+            {
+              "label": "GET /v1/treasury/financial_accounts"
+            },
+            {
+              "label": "GET /v1/treasury/financial_accounts/{financial_account}"
+            },
+            {
+              "label": "GET /v1/treasury/inbound_transfers"
+            },
+            {
+              "label": "GET /v1/treasury/inbound_transfers/{id}"
+            },
+            {
+              "label": "GET /v1/treasury/outbound_payments"
+            },
+            {
+              "label": "GET /v1/treasury/outbound_payments/{id}"
+            },
+            {
+              "label": "GET /v1/treasury/outbound_transfers"
+            },
+            {
+              "label": "GET /v1/treasury/outbound_transfers/{outbound_transfer}"
+            },
+            {
+              "label": "GET /v1/treasury/received_credits"
+            },
+            {
+              "label": "GET /v1/treasury/received_credits/{id}"
+            },
+            {
+              "label": "GET /v1/treasury/received_debits"
+            },
+            {
+              "label": "GET /v1/treasury/received_debits/{id}"
+            },
+            {
+              "label": "GET /v1/treasury/transaction_entries"
+            },
+            {
+              "label": "GET /v1/treasury/transaction_entries/{id}"
+            },
+            {
+              "label": "GET /v1/treasury/transactions"
+            },
+            {
+              "label": "GET /v1/treasury/transactions/{id}"
+            },
+            {
+              "label": "GET /v1/webhook_endpoints"
+            },
+            {
+              "label": "GET /v1/webhook_endpoints/{webhook_endpoint}"
+            },
+            {
+              "label": "DELETE /v1/accounts/{account}"
+            },
+            {
+              "label": "DELETE /v1/accounts/{account}/external_accounts/{id}"
+            },
+            {
+              "label": "DELETE /v1/coupons/{coupon}"
+            },
+            {
+              "label": "DELETE /v1/customers/{customer}/tax_ids/{id}"
+            },
+            {
+              "label": "DELETE /v1/customers/{customer}"
+            },
+            {
+              "label": "DELETE /v1/customers/{customer}/discount"
+            },
+            {
+              "label": "DELETE /v1/invoiceitems/{invoiceitem}"
+            },
+            {
+              "label": "DELETE /v1/invoices/{invoice}"
+            },
+            {
+              "label": "DELETE /v1/accounts/{account}/persons/{person}"
+            },
+            {
+              "label": "DELETE /v1/products/{id}"
+            },
+            {
+              "label": "DELETE /v1/radar/value_lists/{value_list}"
+            },
+            {
+              "label": "DELETE /v1/radar/value_list_items/{item}"
+            },
+            {
+              "label": "DELETE /v1/skus/{id}"
+            },
+            {
+              "label": "DELETE /v1/customers/{customer}/sources/{id}"
+            },
+            {
+              "label": "DELETE /v1/subscription_items/{item}"
+            },
+            {
+              "label": "DELETE /v1/subscriptions/{subscription_exposed_id}"
+            },
+            {
+              "label": "DELETE /v1/subscriptions/{subscription_exposed_id}/discount"
+            },
+            {
+              "label": "DELETE /v1/terminal/configurations/{configuration}"
+            },
+            {
+              "label": "DELETE /v1/terminal/locations/{location}"
+            },
+            {
+              "label": "DELETE /v1/terminal/readers/{reader}"
+            },
+            {
+              "label": "DELETE /v1/test_helpers/test_clocks/{test_clock}"
+            },
+            {
+              "label": "DELETE /v1/webhook_endpoints/{webhook_endpoint}"
+            }
+        ]
+      }
+    },
+    {
+      "label": "Headers",
+      "name": "headers",
+      "description": "Let the client and the server pass additional information with the HTTP request in a key value format. (e.g. key=ABC123)",
+      "type": "keyValue"
+    },
+    {
+      "label": "Query Params",
+      "name": "params",
+      "description": "Parameters attached to the end of a url in a key value format. (e.g. key=ABC123)",
+      "type": "keyValue"
+    },
+    {
+      "label": "Body",
+      "name": "body",
+      "type": "json",
+      "description": "Content to be sent to the server.",
+      "options": {
+        "allowContextSelector": "true"
+      }
+    },
+    {
+      "label": "Override Settings",
+      "name": "overrideSettings",
+      "type": "boolean",
+      "description": "If true, allows adding configurations",
+      "defaultValue": false,
+      "options": {
+        "allowContextSelector": "false"
+      }
+    },
+    {
+      "label": "Follow Redirects",
+      "name": "followRedirects",
+      "type": "boolean",
+      "description": "Follow the redirects when a HTTP request is executed",
+      "visibility": "config.overrideSettings",
+      "defaultValue": false,
+      "options": {
+        "allowContextSelector": "false"
+      }
+    },
+    {
+      "label": "Download",
+      "name": "download",
+      "type": "boolean",
+      "description": "Indicates that the resource has to be downloaded into a file instead of returning it in the response.",
+      "visibility": "config.overrideSettings && config.events != \"fileDownloaded\"",
+      "defaultValue": false,
+      "options": {
+        "allowContextSelector": "false"
+      }
+    },
+    {
+      "label": "File Name",
+      "name": "fileName",
+      "description": "If provided, the file will be stored with this name. If empty the file name will be calculated from the URL.",
+      "visibility": "(config.overrideSettings && config.download) || config.events === \"fileDownloaded\"",
+      "type": "text",
+      "options": {
+        "allowContextSelector": "true"
+      }
+    },
+    {
+      "label": "Full Response",
+      "name": "fullResponse",
+      "type": "boolean",
+      "description": "Include extended information about response",
+      "visibility": "config.overrideSettings",
+      "defaultValue": false,
+      "options": {
+        "allowContextSelector": "false"
+      }
+    },
+    {
+      "label": "Connection timeout",
+      "name": "connectionTimeout",
+      "description": "Connect timeout interval, in milliseconds (0 = infinity). Default value: 5000 ms (5 sec)",
+      "visibility": "config.overrideSettings",
+      "type": "text",
+      "defaultValue": "5000",
+      "typeOptions": {
+        "validation": {
+          "function": "!config.connectionTimeout || utils.isPlaceholder(config.connectionTimeout) || utils.getInteger(config.connectionTimeout) >= 0",
+          "message": "The time must be a valid placeholder or a positive integer greater than or equal to 0. "
+        }
+      },
+      "options": {
+        "allowContextSelector": "false"
+      }
+    },
+    {
+      "label": "Read timeout",
+      "name": "readTimeout",
+      "description": "Read timeout interval, in milliseconds (0 = infinity). Default value: 60000 ms (60 sec)",
+      "visibility": "config.overrideSettings",
+      "type": "text",
+      "defaultValue": "60000",
+      "typeOptions": {
+        "validation": {
+          "function": "!config.readTimeout || utils.isPlaceholder(config.readTimeout) || utils.getInteger(config.readTimeout) >= 0",
+          "message": "The time must be a valid placeholder or a positive integer greater than or equal to 0. "
+        }
+      },
+      "options": {
+        "allowContextSelector": "false"
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "label": "Response",
+      "name": "response",
+      "type": "object",
+      "description": "The response to external URL"
+    }
+  ]
+}
