@@ -9,23 +9,23 @@
     <tbody>
     <tr>
         <td>Stripe package</td>
-        <td>November 10, 2023</td>
+        <td>November 12, 2023</td>
         <td>Detailed description of the API of the Stripe package.</td>
     </tr>
     </tbody>
 </table>
 ---
-title: Stripe endpoint
+title: Stripe Package
 keywords: 
-last_updated: September 27, 2019
+last_updated: November 12, 2023
 tags: []
-summary: "Detailed description of the API of the Stripe endpoint."
+summary: "Detailed description of the API of the Stripe package."
 ---
 
 # Overview
 
 Stripe helps you create any type of payments flow—from e-commerce to 
-recurring billing and everything in between. The Stripe endpoint has the following features:
+recurring billing and everything in between. The Stripe package has the following features:
 
 - Interact with Stripe API
 - Shortcuts to access the REST API
@@ -40,7 +40,7 @@ var res = pkg.stripe.functions.get({path:'/v1/customers'});
 
 ## Configuration
 
-First you will need to setup an account in Stripe. Then you will be able to configure the endpoint you will
+First you will need to setup an account in Stripe. Then you will be able to configure the package you will
 need to generate an API key  and secret. You can find more information about that [here](https://stripe.com/docs/api/authentication).
 
 ### API key
@@ -59,14 +59,14 @@ This is the URL you should configure for webhooks in Stripe.
 
 ### Check webhooks sign
 
-Stripe can optionally sign the webhook events it sends to your endpoints by including a signature in each event’s
+Stripe can optionally sign the webhook events it sends to your packages by including a signature in each event’s
 Stripe-Signature header. This allows you to verify that the events were sent by Stripe, not by a third party. Check
 [Webhook signatures](https://stripe.com/docs/webhooks/signatures) for more info.
 
 ### Webhooks secret
 
-Before you can verify signatures, you need to retrieve your endpoint’s secret from your Dashboard’s Webhooks settings.
-Select an endpoint that you want to obtain the secret for, then click the Click to reveal button.
+Before you can verify signatures, you need to retrieve your package’s secret from your Dashboard’s Webhooks settings.
+Select an package that you want to obtain the secret for, then click the Click to reveal button.
 
 ## Javascript API
 
@@ -82,8 +82,5 @@ You can make `GET`, `POST`, `PUT`, and `DELETE` request to the
 
 ```js
 var customers = pkg.stripe.functions.get({path:'/v1/customers'});
-var customersByEmail = pkg.stripe.functions.get({path'/v1/customers?email=test@example.com'});
+var customersByEmail = pkg.stripe.functions.get({path:'/v1/customers?email=test@example.com'});
 ```
-
-Please take a look at the documentation of the [HTTP endpoint]({{site.baseurl}}/endpoints_http.html#javascript-api)
-for more information.
