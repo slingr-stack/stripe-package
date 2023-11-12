@@ -209,9 +209,9 @@ function setApiUri(options) {
 
 function setRequestHeaders(options) {
     var headers = options.headers || {};
-    if (config.get("authenticationMethod") === "apiKey") { // TODO: Set the authentication method, if needed or remove this if (Remove comments after set the url)
+    if (config.get("authenticationMethod") === "apiKey") {
         sys.logs.debug('[stripe] Set header apikey');
-        headers = mergeJSON(headers, {"Authorization": "API-Key " + config.get("secretKey")});
+        headers = mergeJSON(headers, {"Authorization": "Bearer " + config.get("secretKey")});
     } 
     headers = mergeJSON(headers, {"Content-Type": "application/json"});
 
