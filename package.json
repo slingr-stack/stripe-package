@@ -77,27 +77,27 @@
     "metadata": [
         {
             "type": "script",
-            "namespace": "api",
+            "namespace": "functions",
             "path": "/scripts/functions.js"
         },
         {
             "type": "flowStep",
-            "namespace": "steps",
+            "namespace": "apiCallStripe",
             "path": "/flowSteps/apiCallStripe"
         },
         {
             "type": "flowStep",
-            "namespace": "steps",
+            "namespace": "createPaymentIntentsStripe",
             "path": "/flowSteps/createPaymentIntentsStripe"
         },
         {
             "type": "flowStep",
-            "namespace": "steps",
+            "namespace": "listAllPaymentIntentsStripe",
             "path": "/flowSteps/listAllPaymentIntentsStripe"
         },
         {
             "type": "flowStep",
-            "namespace": "steps",
+            "namespace": "cancelPaymentIntentsStripe",
             "path": "/flowSteps/cancelPaymentIntentsStripe"
         }
     ]
