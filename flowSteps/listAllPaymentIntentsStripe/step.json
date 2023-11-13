@@ -1,0 +1,25 @@
+{
+  "label": "List all PaymentIntents",
+  "name": "listAllPaymentIntentsStripe",
+  "category": "integrations",
+  "description": "Returns a list of PaymentIntents.",
+  "inputs": [
+    {
+      "label": "Customer",
+      "name": "customer",
+      "description": "Only PaymentIntents associated with the customer specified by this customer ID will be returned. If no customer ID is specified, all PaymentIntents will be listed.",
+      "type": "text",
+      "options": {
+        "allowContextSelector": "true"
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "label": "Response",
+      "name": "response",
+      "type": "object",
+      "description": "The response to external URL"
+    }
+  ]
+}
