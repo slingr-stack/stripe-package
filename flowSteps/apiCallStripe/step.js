@@ -32,85 +32,55 @@ step.apiCallStripe = function (inputs) {
 		fullResponse: inputs.fullResponse || false,
 		connectionTimeout: inputs.connectionTimeout || 5000,
 		readTimeout: inputs.readTimeout || 60000,
-		url: {
-			urlValue: inputs.url.urlValue ? inputs.url.urlValue.split(" ")[1] : "",
-			paramsValue: inputs.url.paramsValue || []
-		},
-		method: inputs.url.urlValue ? inputs.url.urlValue.split(" ")[0] : ""
+		path: inputs.path || "",
+		method: inputs.method || "get"
 	};
 
-	inputsLogic.headers = isObject(inputsLogic.headers) ? inputsLogic.headers : stringToObject(inputsLogic.headers);
-	inputsLogic.params = isObject(inputsLogic.params) ? inputsLogic.params : stringToObject(inputsLogic.params);
-	inputsLogic.body = isObject(inputsLogic.body) ? inputsLogic.body : JSON.parse(inputsLogic.body);
-
-
 	var options = {
-		url: config.get("STRIPE_API_BASE_URL") + parse(inputsLogic.url.urlValue, inputsLogic.url.paramsValue),
-		params: inputsLogic.params,
-		headers: inputsLogic.headers,
-		body: inputsLogic.body,
-		followRedirects : inputsLogic.followRedirects,
-		forceDownload :inputsLogic.download,
-		downloadSync : false,
+		path: inputsLogic.path,
+		params: isObject(inputsLogic.params) ? inputsLogic.params : stringToObject(inputsLogic.params),
+		headers: isObject(inputsLogic.headers) ? inputsLogic.headers : stringToObject(inputsLogic.headers),
+		body: isObject(inputsLogic.body) ? inputsLogic.body : JSON.parse(inputsLogic.body),
+		followRedirects: inputsLogic.followRedirects,
+		forceDownload: inputsLogic.download,
+		downloadSync: false,
 		fileName: inputsLogic.fileName,
-		fullResponse : inputsLogic.fullResponse,
+		fullResponse: inputsLogic.fullResponse,
 		connectionTimeout: inputsLogic.connectionTimeout,
 		readTimeout: inputsLogic.readTimeout
-	}
+	};
+
+	setApiUri(options)
+	setRequestHeaders(options);
+	setRequestHeaders(options);
 
 	switch (inputsLogic.method.toLowerCase()) {
 		case 'get':
 			return httpService.get(options);
 		case 'post':
 			return httpService.post(options);
-		case 'delete':
-			return httpService.delete(options);
 		case 'put':
 			return httpService.put(options);
-		case 'connect':
-			return httpService.connect(options);
+		case 'patch':
+			return httpService.patch(options);
+		case 'delete':
+			return httpService.delete(options);
 		case 'head':
 			return httpService.head(options);
 		case 'options':
 			return httpService.options(options);
-		case 'patch':
-			return httpService.patch(options);
-		case 'trace':
-			return httpService.trace(options);
 	}
-
-	//REPLACE THIS WITH YOUR OWN CODE
 
 	return null;
 };
 
-var parse = function (url, pathVariables){
-
-	var regex = /{([^}]*)}/g;
-
-	if (!url.match(regex)){
-		return url;
-	}
-
-	if(!pathVariables){
-		sys.logs.error('No path variables have been received and the url contains curly brackets\'{}\'');
-		throw new Error('Error please contact support.');
-	}
-
-	url = url.replace(regex, function(m, i) {
-		return pathVariables[i] ? pathVariables[i] : m;
-	})
-
-	return url;
-}
-
-var isObject = function (obj) {
+function isObject (obj) {
 	return !!obj && stringType(obj) === '[object Object]'
-};
+}
 
 var stringType = Function.prototype.call.bind(Object.prototype.toString);
 
-var stringToObject = function (obj) {
+function stringToObject (obj) {
 	if (!!obj){
 		var keyValue = obj.toString().split(',');
 		var parseObj = {};
@@ -120,4 +90,39 @@ var stringToObject = function (obj) {
 		return parseObj;
 	}
 	return null;
-};
+}
+
+
+/****************************************************
+ Private API
+ ****************************************************/
+
+function setApiUri(options) {
+	var API_URL = config.get("STRIPE_API_BASE_URL");
+	var url = options.path || "";
+	options.url = API_URL + url;
+	sys.logs.debug('[stripe] Set url: ' + options.path + "->" + options.url);
+	return options;
+}
+
+function setRequestHeaders(options) {
+	var headers = options.headers || {};
+	sys.logs.debug('[stripe] Set header apikey');
+	headers = mergeJSON(headers, {"Authorization": "Bearer " + config.get("secretKey")});
+	headers = mergeJSON(headers, {"Content-Type": "application/json"});
+	options.headers = headers;
+	return options;
+}
+
+
+function mergeJSON (json1, json2) {
+	const result = {};
+	var key;
+	for (key in json1) {
+		if(json1.hasOwnProperty(key)) result[key] = json1[key];
+	}
+	for (key in json2) {
+		if(json2.hasOwnProperty(key)) result[key] = json2[key];
+	}
+	return result;
+}

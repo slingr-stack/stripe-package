@@ -5,7 +5,7 @@
         {
             "type": "service",
             "name": "http",
-            "version": "v1.2.6",
+            "version": "v1.3.3",
             "instanceId": "shared"
         }
     ],
@@ -77,27 +77,27 @@
     "metadata": [
         {
             "type": "script",
-            "namespace": "functions",
+            "namespace": "api",
             "path": "/scripts/functions.js"
         },
         {
             "type": "flowStep",
-            "namespace": "apiCallStripe",
+            "namespace": "steps",
             "path": "/flowSteps/apiCallStripe"
         },
         {
             "type": "flowStep",
-            "namespace": "createPaymentIntentsStripe",
+            "namespace": "steps",
             "path": "/flowSteps/createPaymentIntentsStripe"
         },
         {
             "type": "flowStep",
-            "namespace": "listAllPaymentIntentsStripe",
+            "namespace": "steps",
             "path": "/flowSteps/listAllPaymentIntentsStripe"
         },
         {
             "type": "flowStep",
-            "namespace": "cancelPaymentIntentsStripe",
+            "namespace": "steps",
             "path": "/flowSteps/cancelPaymentIntentsStripe"
         }
     ]
