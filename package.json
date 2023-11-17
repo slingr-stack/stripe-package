@@ -64,7 +64,7 @@
             "name": "STRIPE_API_BASE_URL",
             "label": "Stripe Api Url",
             "type": "label",
-            "value": "https://api.stripe.com/"
+            "value": "https://api.stripe.com"
         }
     ],
     "events": [
