@@ -1,4 +1,4 @@
-<table>
+<table class="table" style="margin-top: 10px">
     <thead>
     <tr>
         <th>Title</th>
@@ -9,18 +9,11 @@
     <tbody>
     <tr>
         <td>Stripe package</td>
-        <td>November 12, 2023</td>
+        <td>November 17, 2023</td>
         <td>Detailed description of the API of the Stripe package.</td>
     </tr>
     </tbody>
 </table>
----
-title: Stripe Package
-keywords: 
-last_updated: November 12, 2023
-tags: []
-summary: "Detailed description of the API of the Stripe package."
----
 
 # Overview
 
@@ -35,23 +28,21 @@ In most cases you will be using the provided shortcuts to access the API. For ex
 directly by doing an HTTP request like this:
 
 ```js
-var res = pkg.stripe.functions.get({path:'/v1/customers'});
+var res = pkg.stripe.api.get('/v1/customers');
 ```
 
 ## Configuration
 
-First you will need to setup an account in Stripe. Then you will be able to configure the package you will
-need to generate an API key  and secret. You can find more information about that [here](https://stripe.com/docs/api/authentication).
+First, you will need to setup an account in Stripe. Then you will be able to configure the package you will
+need to generate an API key and secret. You can find more information about that [here](https://stripe.com/docs/api/authentication).
 
 ### API key
 
 The public key can be generated in the dashboard of your Stripe app. Just copy the generated API publishable key to this field.
 
-
 ### API secret
 
-This is the API secret generated at same time the API key. Just copy the generated API secret to this field.
-
+This is the API secret generated at the same time the API key. Just copy the generated API secret to this field.
 
 ### Webhook URL
 
@@ -70,10 +61,10 @@ Select an package that you want to obtain the secret for, then click the Click t
 
 ## Javascript API
 
-The Javascript API of the Stripe package has three pieces:
+The Javascript API of the Stripe package has two pieces:
 
-- **HTTP request**: this allows to make regular HTTP requests like `GET`, `POST` or `PUT` to the API.
-- **Shortcuts**: these are helpers to make HTTP request to the API in a more convenient way.
+- **HTTP requests**
+- **Flow steps**
 
 ### HTTP requests
 
@@ -81,8 +72,8 @@ You can make `GET`, `POST`, `PUT`, and `DELETE` request to the
 [Stripe API](https://stripe.com/docs/api) like this:
 
 ```js
-var customers = pkg.stripe.functions.get({path:'/v1/customers'});
-var customersByEmail = pkg.stripe.functions.get({path:'/v1/customers?email=test@example.com'});
+var customers = pkg.stripe.api.get('/v1/customers');
+var customersByEmail = pkg.stripe.api.get('/v1/customers?email=test@example.com');
 ```
 
 ## Events
@@ -93,37 +84,6 @@ Stripe's webhooks allow your application to receive information to configured ev
 
 Please refer to the [webhooks documentation](https://stripe.com/docs/webhooks/setup) for more information on how to configure them.
 
-## About SLINGR
-
-SLINGR is a low-code rapid application development platform that accelerates development, with robust architecture for integrations and executing custom workflows and automation.
-
-[More info about SLINGR](https://slingr.io)
-
-## License
-
-This package is licensed under the Apache License 2.0. See the `LICENSE` file for more details.
-
-# Stripe v2.0.0
-
-# Javascript API
-
-The Javascript API of the stripe package has three pieces:
-
-- **HTTP requests**: These allow making regular HTTP requests.
-- **Additional Helpers**: These helpers provide additional features that facilitate or improves the package usage in SLINGR.
-
-## HTTP requests
-You can make `POST`,`GET`,`DELETE` requests to the [stripe API](API_URL_HERE) like this:
-```js
-var response = pkg.stripe.functions.post({path:'/v1/subscriptions/:subscription_exposed_id', body: {}});
-var response = pkg.stripe.functions.post({path:'/v1/subscriptions/:subscription_exposed_id'});
-var response = pkg.stripe.functions.get({path:'/v1/customers/:customer/cash_balance_transactions'});
-var response = pkg.stripe.functions.delete({path:'/v1/invoices/:invoice'});
-```
-
-Please take a look at the documentation of the [HTTP service](https://github.com/slingr-stack/http-service)
-for more information about generic requests.
-
 ## Flow Step
 
 As an alternative option to using scripts, you can make use of Flows and Flow Steps specifically created for the package:
@@ -131,8 +91,6 @@ As an alternative option to using scripts, you can make use of Flows and Flow St
     <summary>Click here to see the Flow Steps</summary>
 
 <br>
-
-
 
 ### Generic Flow Step
 
@@ -517,16 +475,8 @@ A PaymentIntent object can be canceled when it is in one of these statuses: requ
 
 </details>
 
-## Additional Helpers
-*MANUALLY ADD THE DOCUMENTATION OF THESE HELPERS HERE...*
-
-
-
 ## Dependencies
 * HTTP Service (Latest Version)
-
-
-// TODO: Review the dependencies of the package (and remove this comment after set the dependencies)
 
 # About SLINGR
 

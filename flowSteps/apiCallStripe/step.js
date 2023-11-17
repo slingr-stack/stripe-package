@@ -32,12 +32,15 @@ step.apiCallStripe = function (inputs) {
 		fullResponse: inputs.fullResponse || false,
 		connectionTimeout: inputs.connectionTimeout || 5000,
 		readTimeout: inputs.readTimeout || 60000,
-		path: inputs.path || "",
-		method: inputs.method || "get"
+		path: inputs.path || {
+			urlValue: "",
+			paramsValue: []
+		},
+		method: inputs.method || "get",
 	};
 
 	var options = {
-		path: inputsLogic.path,
+		path: parse(inputsLogic.path.urlValue, inputsLogic.path.paramsValue),
 		params: isObject(inputsLogic.params) ? inputsLogic.params : stringToObject(inputsLogic.params),
 		headers: isObject(inputsLogic.headers) ? inputsLogic.headers : stringToObject(inputsLogic.headers),
 		body: isObject(inputsLogic.body) ? inputsLogic.body : JSON.parse(inputsLogic.body),
@@ -50,9 +53,9 @@ step.apiCallStripe = function (inputs) {
 		readTimeout: inputsLogic.readTimeout
 	};
 
-	setApiUri(options)
-	setRequestHeaders(options);
-	setRequestHeaders(options);
+	options= setApiUri(options)
+	options= setRequestHeaders(options);
+	options= setRequestHeaders(options);
 
 	switch (inputsLogic.method.toLowerCase()) {
 		case 'get':
@@ -92,7 +95,6 @@ function stringToObject (obj) {
 	return null;
 }
 
-
 /****************************************************
  Private API
  ****************************************************/
@@ -113,7 +115,6 @@ function setRequestHeaders(options) {
 	options.headers = headers;
 	return options;
 }
-
 
 function mergeJSON (json1, json2) {
 	var result = {};

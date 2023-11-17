@@ -78,7 +78,7 @@
         {
             "type": "script",
             "namespace": "api",
-            "path": "/scripts/functions.js"
+            "path": "/scripts/api.js"
         },
         {
             "type": "flowStep",

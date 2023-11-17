@@ -7,9 +7,11 @@
     {
       "label": "Method",
       "name": "method",
-      "type": "dropDown",
       "description": "The method to which this service will send the request.",
+      "type": "dropDown",
       "multiplicity": "one",
+      "required": "true",
+      "defaultValue": "get",
       "options": {
         "possibleValues": [
           {
@@ -48,7 +50,7 @@
       "label": "Path",
       "name": "path",
       "description": "The URL to which this service will send the request.",
-      "type": "text",
+      "type": "urlParams",
       "required": "true"
     },
     {
