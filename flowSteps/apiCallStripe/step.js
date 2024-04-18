@@ -55,7 +55,6 @@ step.apiCallStripe = function (inputs) {
 
 	options= setApiUri(options)
 	options= setRequestHeaders(options);
-	options= setRequestHeaders(options);
 
 	switch (inputsLogic.method.toLowerCase()) {
 		case 'get':
@@ -111,7 +110,6 @@ function setRequestHeaders(options) {
 	var headers = options.headers || {};
 	sys.logs.debug('[stripe] Set header apikey');
 	headers = mergeJSON(headers, {"Authorization": "Bearer " + config.get("secretKey")});
-	headers = mergeJSON(headers, {"Content-Type": "application/json"});
 	options.headers = headers;
 	return options;
 }
