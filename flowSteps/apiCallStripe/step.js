@@ -36,7 +36,7 @@ step.apiCallStripe = function (inputs) {
 			urlValue: "",
 			paramsValue: []
 		},
-		method: inputs.method || "get",
+		method: inputs.method || "get"
 	};
 
 	var options = {

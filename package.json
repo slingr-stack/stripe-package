@@ -82,8 +82,23 @@
         },
         {
             "type": "flowStep",
-            "namespace": "steps",
+            "namespace": "apiCallStripe",
             "path": "/flowSteps/apiCallStripe"
+        },
+        {
+            "type": "flowStep",
+            "namespace": "createPaymentIntentsStripe",
+            "path": "/flowSteps/createPaymentIntentsStripe"
+        },
+        {
+            "type": "flowStep",
+            "namespace": "listAllPaymentIntentsStripe",
+            "path": "/flowSteps/listAllPaymentIntentsStripe"
+        },
+        {
+            "type": "flowStep",
+            "namespace": "cancelPaymentIntentsStripe",
+            "path": "/flowSteps/cancelPaymentIntentsStripe"
         }
     ]
 }
