@@ -13,7 +13,6 @@ let httpDependency = {
     head: httpReference.head,
     options: httpReference.options
 };
-
 let httpService = {};
 
 /**
@@ -53,7 +52,7 @@ for (let key in httpDependency) {
  */
 exports.get = function(path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
-    return httpService.get(Stripe(options), callbackData, callbacks);
+    return httpService.get(stripe(options), callbackData, callbacks);
 };
 
 /**
@@ -67,7 +66,7 @@ exports.get = function(path, httpOptions, callbackData, callbacks) {
  */
 exports.post = function(path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
-    return httpService.post(Stripe(options), callbackData, callbacks);
+    return httpService.post(stripe(options), callbackData, callbacks);
 };
 
 /**
@@ -81,7 +80,7 @@ exports.post = function(path, httpOptions, callbackData, callbacks) {
  */
 exports.put = function(path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
-    return httpService.put(Stripe(options), callbackData, callbacks);
+    return httpService.put(stripe(options), callbackData, callbacks);
 };
 
 /**
@@ -95,7 +94,7 @@ exports.put = function(path, httpOptions, callbackData, callbacks) {
  */
 exports.patch = function(path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
-    return httpService.patch(Stripe(options), callbackData, callbacks);
+    return httpService.patch(stripe(options), callbackData, callbacks);
 };
 
 /**
@@ -109,7 +108,7 @@ exports.patch = function(path, httpOptions, callbackData, callbacks) {
  */
 exports.delete = function(path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
-    return httpService.delete(Stripe(options), callbackData, callbacks);
+    return httpService.delete(stripe(options), callbackData, callbacks);
 };
 
 /**
@@ -123,7 +122,7 @@ exports.delete = function(path, httpOptions, callbackData, callbacks) {
  */
 exports.head = function(path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
-    return httpService.head(Stripe(options), callbackData, callbacks);
+    return httpService.head(stripe(options), callbackData, callbacks);
 };
 
 /**
@@ -137,7 +136,7 @@ exports.head = function(path, httpOptions, callbackData, callbacks) {
  */
 exports.options = function(path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
-    return httpService.options(Stripe(options), callbackData, callbacks);
+    return httpService.options(stripe(options), callbackData, callbacks);
 };
 
 exports.utils = {
@@ -270,7 +269,7 @@ let stringType = Function.prototype.call.bind(Object.prototype.toString)
  Configurator
  ****************************************************/
 
-let Stripe = function (options) {
+let stripe = function (options) {
     options = options || {};
     options= setApiUri(options);
     options= setRequestHeaders(options);
@@ -293,13 +292,12 @@ function setRequestHeaders(options) {
     let headers = options.headers || {};
     sys.logs.debug('[stripe] Set header apikey');
     headers = mergeJSON(headers, {"Authorization": "Bearer " + config.get("secretKey")});
-    headers = mergeJSON(headers, {"Content-Type": "application/json"});
     options.headers = headers;
     return options;
 }
 
 function mergeJSON (json1, json2) {
-    const result = {};
+    let result = {};
     let key;
     for (key in json1) {
         if(json1.hasOwnProperty(key)) result[key] = json1[key];
