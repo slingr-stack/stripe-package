@@ -62,7 +62,7 @@ exports.get = function(path, httpOptions, callbackData, callbacks) {
  */
 exports.post = function(path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
-    let headers = httpOptions.headers || {};
+    let headers = options.headers || {};
     sys.logs.debug('[stripe] Set header Content-Type');
     headers = mergeJSON(headers, {
         "Content-Type": "application/x-www-form-urlencoded"
@@ -82,7 +82,7 @@ exports.post = function(path, httpOptions, callbackData, callbacks) {
  */
 exports.put = function(path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
-    let headers = httpOptions.headers || {};
+    let headers = options.headers || {};
     sys.logs.debug('[stripe] Set header Content-Type');
     headers = mergeJSON(headers, {
         "Content-Type": "application/x-www-form-urlencoded"
