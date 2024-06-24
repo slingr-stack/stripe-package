@@ -41,26 +41,6 @@
             "required": "config.checkWebhooksSign==true"
         },
         {
-            "label": "Max Concurrent Calls",
-            "name": "maxConcurrentCalls",
-            "type": "text",
-            "required": true,
-            "defaultValue": "3",
-            "typeOptions": {
-                "validation": "number"
-            }
-        },
-        {
-            "label": "Max Retries",
-            "name": "maxRetries",
-            "type": "text",
-            "required": true,
-            "defaultValue": "6",
-            "typeOptions": {
-                "validation": "number"
-            }
-        },
-        {
             "name": "STRIPE_API_BASE_URL",
             "label": "Stripe Api Url",
             "type": "label",
