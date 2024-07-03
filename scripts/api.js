@@ -24,7 +24,7 @@ function handleRequestWithRetry(requestFn, options, callbackData, callbacks) {
 }
 
 function createWrapperFunction(requestFn) {
-    return function(options, callbackData, callbacks) {
+    return function (options, callbackData, callbacks) {
         return handleRequestWithRetry(requestFn, options, callbackData, callbacks);
     };
 }
@@ -46,7 +46,7 @@ for (let key in httpDependency) {
  * @param {object} callbacks    - The callback functions to be called upon completion of the GET request. [optional]
  * @return {object}             - The response of the GET request.
  */
-exports.get = function(path, httpOptions, callbackData, callbacks) {
+exports.get = function (path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
     return httpService.get(stripe(options), callbackData, callbacks);
 };
@@ -60,7 +60,7 @@ exports.get = function(path, httpOptions, callbackData, callbacks) {
  * @param {object} callbacks    - The callback functions to be called upon completion of the POST request. [optional]
  * @return {object}             - The response of the POST request.
  */
-exports.post = function(path, httpOptions, callbackData, callbacks) {
+exports.post = function (path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
     let headers = options.headers || {};
     sys.logs.debug('[stripe] Set header Content-Type');
@@ -80,7 +80,7 @@ exports.post = function(path, httpOptions, callbackData, callbacks) {
  * @param {object} callbacks    - The callback functions to be called upon completion of the POST request. [optional]
  * @return {object}             - The response of the PUT request.
  */
-exports.put = function(path, httpOptions, callbackData, callbacks) {
+exports.put = function (path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
     let headers = options.headers || {};
     sys.logs.debug('[stripe] Set header Content-Type');
@@ -100,7 +100,7 @@ exports.put = function(path, httpOptions, callbackData, callbacks) {
  * @param {object} callbacks    - The callback functions to be called upon completion of the POST request. [optional]
  * @return {object}             - The response of the PATCH request.
  */
-exports.patch = function(path, httpOptions, callbackData, callbacks) {
+exports.patch = function (path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
     return httpService.patch(stripe(options), callbackData, callbacks);
 };
@@ -114,7 +114,7 @@ exports.patch = function(path, httpOptions, callbackData, callbacks) {
  * @param {object} callbacks    - The callback functions to be called upon completion of the DELETE request. [optional]
  * @return {object}             - The response of the DELETE request.
  */
-exports.delete = function(path, httpOptions, callbackData, callbacks) {
+exports.delete = function (path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
     return httpService.delete(stripe(options), callbackData, callbacks);
 };
@@ -128,7 +128,7 @@ exports.delete = function(path, httpOptions, callbackData, callbacks) {
  * @param {object} callbacks    - The callback functions to be called upon completion of the HEAD request. [optional]
  * @return {object}             - The response of the HEAD request.
  */
-exports.head = function(path, httpOptions, callbackData, callbacks) {
+exports.head = function (path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
     return httpService.head(stripe(options), callbackData, callbacks);
 };
@@ -142,7 +142,7 @@ exports.head = function(path, httpOptions, callbackData, callbacks) {
  * @param {object} callbacks    - The callback functions to be called upon completion of the OPTIONS request. [optional]
  * @return {object}             - The response of the OPTIONS request.
  */
-exports.options = function(path, httpOptions, callbackData, callbacks) {
+exports.options = function (path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
     return httpService.options(stripe(options), callbackData, callbacks);
 };
@@ -155,7 +155,7 @@ exports.utils = {
      * @param {number | string} params      - The date to be converted.
      * @return {object}                     - An object containing the timestamp.
      */
-    fromDateToTimestamp: function(params) {
+    fromDateToTimestamp: function (params) {
         if (!!params) {
             return {timestamp: new Date(params).getTime()};
         }
@@ -168,7 +168,7 @@ exports.utils = {
      * @param {number} timestamp            - The timestamp to convert.
      * @return {object}                     - The date object representing the timestamp.
      */
-    fromTimestampToDate: function(timestamp) {
+    fromTimestampToDate: function (timestamp) {
         return new Date(timestamp);
     },
 
@@ -184,7 +184,7 @@ exports.utils = {
             sys.logs.debug('[stripe] Get configuration');
             return JSON.stringify(config.get());
         }
-        sys.logs.debug('[stripe] Get property: '+property);
+        sys.logs.debug('[stripe] Get property: ' + property);
         return config.get(property);
     },
 
@@ -211,41 +211,27 @@ exports.utils = {
 };
 
 /**
- * Verifies the signature of the given body using the provided signature coded in sha1 or sha256.
- *
- * @param {string} body                 - The body to be verified.
- * @param {string} signature            - The signature to be checked.
- * @param {string} signature256         - The signature256 to be checked.
- * @return {boolean}                    - True if the signature is valid, false otherwise.
+ * Verifies the signature of a payload against the provided signature header and secret.
+ * @param {string} payload - The payload to verify.
+ * @param {string} sigHeader - The signature header containing timestamp and signatures.
+ * @param {number} [tolerance=300] - Tolerance in seconds for timestamp validation (default is 300 seconds).
+ * @returns {boolean} True if the signature is valid, false otherwise.
  */
-exports.utils.verifySignature = function (body, signature, signature256) {
-    sys.logs.info("Checking signature");
-    let verified = true;
-    let verified256 = true;
-    let secret = config.get("webhookSecret");
-    if (!body || body === "") {
-        sys.logs.warn("The body is null or empty");
-        return false;
+exports.utils.verifySignature = function (payload, sigHeader) {
+    var checkWebhooksSign = config.get("checkWebhooksSign")
+    var webhooksSecret = config.get("webhooksSecret")
+    if (!checkWebhooksSign) {
+        sys.logs.warn("[stripe] Webhooks signature verification is disabled");
+        return true;
     }
-    if (!secret || secret === "" || !signature || signature === "" ||
-        !sys.utils.crypto.verifySignatureWithHmac(body, signature.replace("sha1=",""), secret, "HmacSHA1")) {
-        sys.logs.warn("Invalid signature sha1");
-        verified = false;
-    }
-    if (!secret || secret === "" ||  !signature256 ||!signature256 ||
-        !sys.utils.crypto.verifySignatureWithHmac(body, signature.replace("sha256=",""), secret, "HmacSHA256")) {
-        sys.logs.warn("Invalid signature sha 256");
-        verified256 = false;
-    }
-
-    return (verified || verified256);
+    return sys.utils.crypto.verifySignatureWithHmac(payload, sigHeader, webhooksSecret, "stripe");
 };
 
 /****************************************************
  Private helpers
  ****************************************************/
 
-function checkHttpOptions (path, options) {
+function checkHttpOptions(path, options) {
     options = options || {};
     if (!!path) {
         if (isObject(path)) {
@@ -267,7 +253,7 @@ function checkHttpOptions (path, options) {
     return options;
 }
 
-function isObject (obj) {
+function isObject(obj) {
     return !!obj && stringType(obj) === '[object Object]'
 }
 
@@ -279,8 +265,8 @@ let stringType = Function.prototype.call.bind(Object.prototype.toString)
 
 let stripe = function (options) {
     options = options || {};
-    options= setApiUri(options);
-    options= setRequestHeaders(options);
+    options = setApiUri(options);
+    options = setRequestHeaders(options);
     return options;
 }
 
@@ -304,14 +290,14 @@ function setRequestHeaders(options) {
     return options;
 }
 
-function mergeJSON (json1, json2) {
+function mergeJSON(json1, json2) {
     let result = {};
     let key;
     for (key in json1) {
-        if(json1.hasOwnProperty(key)) result[key] = json1[key];
+        if (json1.hasOwnProperty(key)) result[key] = json1[key];
     }
     for (key in json2) {
-        if(json2.hasOwnProperty(key)) result[key] = json2[key];
+        if (json2.hasOwnProperty(key)) result[key] = json2[key];
     }
     return result;
 }

@@ -64,6 +64,11 @@
             "type": "flowStep",
             "namespace": "apiCallStripe",
             "path": "/flowSteps/apiCallStripe"
+        },
+        {
+            "type": "listener",
+            "namespace": "webhook",
+            "path": "/listeners/webhook.js"
         }
     ]
 }
