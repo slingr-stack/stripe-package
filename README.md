@@ -1,6 +1,6 @@
-Repo: [https://github.com/slingr-stack/stripe-package](https://github.com/slingr-stack/stripe-package)
-
 # Overview
+
+Repo: [https://github.com/slingr-stack/stripe-package](https://github.com/slingr-stack/stripe-package)
 
 Stripe helps you create any type of payments flow—from e-commerce to recurring billing and everything in between. The Stripe package has the following features:
 
