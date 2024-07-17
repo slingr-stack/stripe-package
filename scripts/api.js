@@ -147,86 +147,6 @@ exports.options = function (path, httpOptions, callbackData, callbacks) {
     return httpService.options(stripe(options), callbackData, callbacks);
 };
 
-exports.utils = {
-
-    /**
-     * Converts a given date to a timestamp.
-     *
-     * @param {number | string} params      - The date to be converted.
-     * @return {object}                     - An object containing the timestamp.
-     */
-    fromDateToTimestamp: function (params) {
-        if (!!params) {
-            return {timestamp: new Date(params).getTime()};
-        }
-        return null;
-    },
-
-    /**
-     * Converts a timestamp to a date object.
-     *
-     * @param {number} timestamp            - The timestamp to convert.
-     * @return {object}                     - The date object representing the timestamp.
-     */
-    fromTimestampToDate: function (timestamp) {
-        return new Date(timestamp);
-    },
-
-    /**
-     * Gets a configuration from the properties.
-     *
-     * @param {string} property             - The name of the property to get.
-     *                                          If it is empty, return the entire configuration object.
-     * @return {string}                     - The value of the property or the whole object as string.
-     */
-    getConfiguration: function (property) {
-        if (!property) {
-            sys.logs.debug('[stripe] Get configuration');
-            return JSON.stringify(config.get());
-        }
-        sys.logs.debug('[stripe] Get property: ' + property);
-        return config.get(property);
-    },
-
-    /**
-     * Concatenates a path with a param query and its value.
-     *
-     * @param path                          - The path to concatenate.
-     * @param key                           - The name of the param.
-     * @param value                         - The value of the param.
-     * @returns {string}                    - The concatenated path without coding parameters.
-     */
-    concatQuery: function (path, key, value) {
-        return path + ((!path || path.indexOf('?') < 0) ? '?' : '&') + key + "=" + value;
-    },
-
-    /**
-     * Merges two JSON objects into a single object.
-     *
-     * @param {Object} json1 - The first JSON object to be merged.
-     * @param {Object} json2 - The second JSON object to be merged.
-     * @return {Object} - The merged JSON object.
-     */
-    mergeJSON: mergeJSON,
-};
-
-/**
- * Verifies the signature of a payload against the provided signature header and secret.
- * @param {string} payload - The payload to verify.
- * @param {string} sigHeader - The signature header containing timestamp and signatures.
- * @param {number} [tolerance=300] - Tolerance in seconds for timestamp validation (default is 300 seconds).
- * @returns {boolean} True if the signature is valid, false otherwise.
- */
-exports.utils.verifySignature = function (payload, sigHeader) {
-    var checkWebhooksSign = config.get("checkWebhooksSign")
-    var webhooksSecret = config.get("webhooksSecret")
-    if (!checkWebhooksSign) {
-        sys.logs.warn("[stripe] Webhooks signature verification is disabled");
-        return true;
-    }
-    return sys.utils.crypto.verifySignatureWithHmac(payload, sigHeader, webhooksSecret, "stripe");
-};
-
 /****************************************************
  Private helpers
  ****************************************************/
@@ -275,7 +195,7 @@ let stripe = function (options) {
  ****************************************************/
 
 function setApiUri(options) {
-    let API_URL = config.get("STRIPE_API_BASE_URL");
+    let API_URL = config.get("stripeApiBaseUrl");
     let url = options.path || "";
     options.url = API_URL + url;
     sys.logs.debug('[stripe] Set url: ' + options.path + "->" + options.url);

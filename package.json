@@ -1,6 +1,6 @@
 {
+    "label": "Stripe",
     "name": "stripe",
-    "label": "Stripe Package",
     "dependencies": [
         {
             "type": "service",
@@ -11,38 +11,38 @@
     ],
     "configuration": [
         {
-            "label": "Publishable key",
+            "label": "Publishable Key",
             "name": "publishableKey",
             "type": "text",
             "required": true
         },
         {
-            "label": "Secret key",
+            "label": "Secret Key",
             "name": "secretKey",
             "type": "password",
             "required": true
         },
         {
-            "name": "webhook",
             "label": "Webhook URL",
+            "name": "webhookUrl",
             "type": "label",
             "value": "@config.WEBHOOK_URL"
         },
         {
-            "label": "Check webhooks sign",
-            "name": "checkWebhooksSign",
+            "label": "Check Webhooks Signature",
+            "name": "checkWebhooksSignature",
             "type": "toggle",
             "defaultValue": false
         },
         {
-            "label": "Webhooks secret",
-            "name": "webhooksSecret",
+            "label": "Webhooks Signing Secret",
+            "name": "webhooksSigningSecret",
             "type": "password",
             "required": "config.checkWebhooksSign==true"
         },
         {
-            "name": "STRIPE_API_BASE_URL",
-            "label": "Stripe Api Url",
+            "label": "Stripe API Url",
+            "name": "stripeBaseUrl",
             "type": "label",
             "value": "https://api.stripe.com"
         }
@@ -59,6 +59,11 @@
             "type": "script",
             "namespace": "api",
             "path": "/scripts/api.js"
+        },
+        {
+            "type": "script",
+            "namespace": "utils",
+            "path": "/scripts/utils.js"
         },
         {
             "type": "flowStep",

@@ -13,26 +13,13 @@ listeners.defaultWebhookStripe = {
         }
     },
     callback: function(event) {
-        try {
-            var body = event.data.body;
-            var headers = event.data.headers;
-            var signature = headers["Stripe-Signature"] || headers["stripe-signature"];
-
-            if (!pkg.stripe.api.utils.verifySignature(body, signature)) {
-                throw new Error("Invalid signature");
-            }
-
-            sys.events.triggerEvent("http:webhook", event.data);
-
-        } catch (e) {
-            var json = {
-                type: "error",
-                code: e.message === "Invalid signature" ? 400 : 500,
-                message: e.message
-            };
-            sys.events.triggerEvent("http:webhook", json);
+        let body = event.data.body;
+        let headers = event.data.headers;
+        let signature = headers["Stripe-Signature"] || headers["stripe-signature"];
+        if (pkg.stripe.utils.verifySignature(body, signature)) {
+            sys.events.triggerEvent("stripe:webhook", event.data);
+        } else {
+            sys.logs.error('[stripe] Invalid signature for webhook');
         }
-
-        return "ok";
     }
 };
