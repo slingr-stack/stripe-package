@@ -38,7 +38,7 @@
             "label": "Webhooks Signing Secret",
             "name": "webhooksSigningSecret",
             "type": "password",
-            "required": "config.checkWebhooksSign==true"
+            "required": "config.checkWebhooksSignature==true"
         },
         {
             "label": "Stripe API Url",
