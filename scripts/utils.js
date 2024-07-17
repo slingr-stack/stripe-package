@@ -2,7 +2,6 @@
  * Verifies the signature of a payload against the provided signature header and secret.
  * @param {string} payload - The payload to verify.
  * @param {string} sigHeader - The signature header containing timestamp and signatures.
- * @param {number} [tolerance=300] - Tolerance in seconds for timestamp validation (default is 300 seconds).
  * @returns {boolean} True if the signature is valid, false otherwise.
  */
 exports.verifySignature = function (payload, sigHeader) {
