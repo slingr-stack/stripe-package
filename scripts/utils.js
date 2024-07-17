@@ -11,5 +11,9 @@ exports.verifySignature = function (payload, sigHeader) {
         sys.logs.warn("[stripe] Webhooks signature verification is disabled");
         return true;
     }
-    return sys.utils.crypto.verifySignatureWithHmac(payload, sigHeader, webhooksSecret, "stripe");
+    sigHeader = sigHeader.split(',');
+    let timestamp = sigHeader[0].split('=')[1];
+    let signature = sigHeader[1].split('=')[1];
+    payload = timestamp + '.' + payload;
+    return sys.utils.crypto.verifySignatureWithHmac(payload, signature, webhooksSecret, "HmacSHA256");
 };

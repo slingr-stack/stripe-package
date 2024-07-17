@@ -23,8 +23,8 @@
             "required": true
         },
         {
-            "name": "webhookUrl",
             "label": "Webhook URL",
+            "name": "webhookUrl",
             "type": "label",
             "value": "@config.WEBHOOK_URL"
         },
@@ -41,8 +41,8 @@
             "required": "config.checkWebhooksSignature==true"
         },
         {
-            "name": "stripeBaseUrl",
             "label": "Stripe API Url",
+            "name": "stripeBaseUrl",
             "type": "label",
             "value": "https://api.stripe.com"
         }

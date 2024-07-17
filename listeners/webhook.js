@@ -13,7 +13,7 @@ listeners.defaultWebhookStripe = {
         }
     },
     callback: function(event) {
-        let body = event.data.body;
+        let body = event.data.rawBody;
         let headers = event.data.headers;
         let signature = headers["Stripe-Signature"] || headers["stripe-signature"];
         if (pkg.stripe.utils.verifySignature(body, signature)) {
