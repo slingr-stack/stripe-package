@@ -19,7 +19,7 @@ listeners.defaultWebhookStripe = {
         if (pkg.stripe.utils.verifySignature(body, signature)) {
             sys.events.triggerEvent("stripe:webhook", event.data);
         } else {
-            sys.logs.error('[stripe] Invalid signature for webhook');
+            sys.logs.warn('[stripe] Invalid signature for webhook');
         }
     }
 };

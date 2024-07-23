@@ -2,13 +2,15 @@
 
 Repo: [https://github.com/slingr-stack/stripe-package](https://github.com/slingr-stack/stripe-package)
 
-Stripe helps you create any type of payments flow—from e-commerce to recurring billing and everything in between. The Stripe package has the following features:
+Stripe is a financial infrastructure platform that enables businesses to accept payments online and in mobile apps. It provides a suite of APIs for processing payments, preventing fraud, and managing subscriptions. Stripe's customizable tools cater to businesses of all sizes, making it a popular choice for e-commerce and SaaS companies.
+
+The Stripe package has the following features:
 
 - Authentication for the Stripe API
 - Shortcuts to access the Stripe API
 - Support for webhooks
 
-In most cases you will be using the provided shortcuts to access the API. For example, you could use the API directly by doing an HTTP request like this:
+In most cases, you will be using the provided shortcuts to access the API. For example, you could use the API directly by doing an HTTP request like this:
 
 ```js
 let res = pkg.stripe.api.get('/v1/customers');
@@ -61,7 +63,7 @@ let customersByEmail = pkg.stripe.api.get('/v1/customers?email=test@example.com'
 
 The package automatically handles authentication, so no need to worry about that.
 
-More information about making HTTP calls, please refer to the documentation of the [HTTP service](https://github.com/slingr-stack/http-service).
+For more information about making HTTP calls, please refer to the documentation of the [HTTP service](https://github.com/slingr-stack/http-service).
 
 # Events
 
