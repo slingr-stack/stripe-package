@@ -195,7 +195,7 @@ let stripe = function (options) {
  ****************************************************/
 
 function setApiUri(options) {
-    let API_URL = config.get("stripeApiBaseUrl");
+    let API_URL = config.get("stripeBaseUrl");
     let url = options.path || "";
     options.url = API_URL + url;
     sys.logs.debug('[stripe] Set url: ' + options.path + "->" + options.url);
