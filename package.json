@@ -13,14 +13,14 @@
         {
             "name": "publishableKey",
             "label": "Publishable Key",
-            "description": "The public key can be found in the dashboard of your Stripe app. Simply copy the generated API publishable key into this field",
+            "description": "The public key can be found in the dashboard of your Stripe app. Simply copy the generated API publishable key into this field.",
             "type": "text",
             "required": true
         },
         {
             "name": "secretKey",
             "label": "Secret Key",
-            "description": "The secret key can be found in the dashboard of your Stripe app. Simply copy the generated API secret key into this field",
+            "description": "The secret key can be found in the dashboard of your Stripe app. Simply copy the generated API secret key into this field.",
             "type": "password",
             "required": true
         },
