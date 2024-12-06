@@ -1,56 +1,59 @@
 {
-    "label": "Stripe",
     "name": "stripe",
+    "label": "Stripe",
     "dependencies": [
         {
             "type": "service",
             "name": "http",
-            "version": "v1.3.7",
+            "version": "v1.7.0",
             "instanceId": "shared"
         }
     ],
     "configuration": [
         {
-            "label": "Publishable Key",
             "name": "publishableKey",
+            "label": "Publishable Key",
+            "description": "The public key can be found in the dashboard of your Stripe app. Simply copy the generated API publishable key into this field.",
             "type": "text",
             "required": true
         },
         {
-            "label": "Secret Key",
             "name": "secretKey",
+            "label": "Secret Key",
+            "description": "The secret key can be found in the dashboard of your Stripe app. Simply copy the generated API secret key into this field.",
             "type": "password",
             "required": true
         },
         {
-            "label": "Webhook URL",
             "name": "webhookUrl",
+            "label": "Webhook URL",
             "type": "label",
             "value": "@config.WEBHOOK_URL"
         },
         {
-            "label": "Check Webhooks Signature",
             "name": "checkWebhooksSignature",
+            "label": "Check Webhooks Signature",
             "type": "toggle",
             "defaultValue": false
         },
         {
-            "label": "Webhooks Signing Secret",
             "name": "webhooksSigningSecret",
+            "label": "Webhooks Signing Secret",
+            "description": "Signature used to verify that the events were sent by Stripe, not by a third party.",
             "type": "password",
             "required": "config.checkWebhooksSignature==true"
         },
         {
-            "label": "Stripe API URL",
             "name": "stripeBaseUrl",
+            "label": "Stripe API URL",
             "type": "label",
             "value": "https://api.stripe.com"
         }
     ],
     "events": [
         {
-            "label": "Webhook",
             "name": "webhook",
+            "label": "Webhook",
             "description": "Happens when a Stripe hits the endpoint URL."
         }
     ],
