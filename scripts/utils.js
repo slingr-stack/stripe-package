@@ -8,8 +8,8 @@ exports.verifySignature = function (payload, sigHeader) {
     let checkWebhooksSign = config.get("checkWebhooksSignature")
     let webhooksSecret = config.get("webhooksSigningSecret")
     sys.logs.debug('*** checkWebhooksSign: ' + JSON.stringify(checkWebhooksSign));
-    sys.logs.debug('*** webhooksSecret: ' + JSON.stringify(webhooksSecret));
     if (!checkWebhooksSign) {
+        sys.logs.debug('*** return true ');
         return true;
     }
     sigHeader = sigHeader.split(',');
