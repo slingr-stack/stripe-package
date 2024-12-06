@@ -10,11 +10,13 @@ The Stripe package has the following features:
 - Shortcuts to access the Stripe API
 - Support for webhooks
 
-In most cases, you will be using the provided shortcuts to access the API. For example, you could use the API directly by doing an HTTP request like this:
+In most cases, you will use the provided shortcuts to access the API. For example, you could use the API directly by making an HTTP request like this:
 
 ```js
 let res = pkg.stripe.api.get('/v1/customers');
 ```
+
+For further details about the Stripe API, please take a look at the [documentation.](https://docs.stripe.com/api)
 
 # Configuration
 
@@ -24,19 +26,19 @@ First, you will need to set up an account in Stripe. You can easily create a dev
 
 Name: `publishableKey`
 
-The public key can be generated in the dashboard of your Stripe app. Just copy the generated API publishable key to this field.
+The public key can be found in the [dashboard](https://dashboard.stripe.com/apikeys) of your Stripe app. Simply copy the generated API publishable key into this field.
 
 ## Secret Key
 
 Name: `secretKey`
 
-This is the API secret generated at the same time the API key. Just copy the generated API secret to this field.
+The secret key can be found in the [dashboard](https://dashboard.stripe.com/apikeys) of your Stripe app. Simply copy the generated API secret key into this field.
 
 ## Webhook URL
 
 Name: `webhookUrl`
 
-This is the URL you should configure for webhooks in Stripe. If you don't configure the webhooks URL in Stripe you app won't receive the events.
+This is the URL you should configure for webhooks in Stripe. If you don't configure the webhook URL in Stripe, your app won't receive the events.
 
 ## Check Webhooks Signature
 
@@ -48,7 +50,7 @@ Stripe can optionally sign webhook events it sends to your app by including a si
 
 Name: `webhooksSigningSecret`
 
-This is the webhooks signing secret configured in Stripe.
+This is the webhook signing secret configured in Stripe.
 
 # Javascript API
 
@@ -61,7 +63,7 @@ let customers = pkg.stripe.api.get('/v1/customers');
 let customersByEmail = pkg.stripe.api.get('/v1/customers?email=test@example.com');
 ```
 
-The package automatically handles authentication, so no need to worry about that.
+The package automatically handles authentication, so there’s no need to worry about that.
 
 For more information about making HTTP calls, please refer to the documentation of the [HTTP service](https://github.com/slingr-stack/http-service).
 
@@ -69,7 +71,7 @@ For more information about making HTTP calls, please refer to the documentation 
 
 ## Webhook
 
-Every time Stripe sends an event to the webhooks URL (it needs to be configured in Stripe), this event will be triggered. The package takes care of verifying the signature if needed. The event's data is the raw content sent by Stripe. Check the [webhooks documentation](https://docs.stripe.com/api/events) for more information.
+Every time Stripe sends an event to the webhook URL (which needs to be configured in Stripe), this event will be triggered. The package takes care of verifying the signature if needed. The event's data is the raw content sent by Stripe. Check the [webhooks signatures](https://docs.stripe.com/api/events) documentation for more information.
 
 # About Slingr
 
