@@ -5,12 +5,9 @@
  * @returns {boolean} True if the signature is valid, false otherwise.
  */
 exports.verifySignature = function (payload, sigHeader) {
-    let checkWebhooksSign = config.get("checkWebhooksSignature")
+    let checkWebhooksSign = JSON.parse(config.get("checkWebhooksSignature"))
     let webhooksSecret = config.get("webhooksSigningSecret")
-    sys.logs.debug('*** checkWebhooksSign: ' + JSON.stringify(checkWebhooksSign)); 
-    // asdasd
     if (!checkWebhooksSign) {
-        sys.logs.debug('*** return true ');
         return true;
     }
     sigHeader = sigHeader.split(',');
