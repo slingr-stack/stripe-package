@@ -7,7 +7,7 @@
 exports.verifySignature = function (payload, sigHeader) {
     let checkWebhooksSign = config.get("checkWebhooksSignature")
     let webhooksSecret = config.get("webhooksSigningSecret")
-    sys.logs.debug('*** checkWebhooksSignature: ' + JSON.stringify(checkWebhooksSignature));
+    sys.logs.debug('*** checkWebhooksSign: ' + JSON.stringify(checkWebhooksSign));
     sys.logs.debug('*** webhooksSecret: ' + JSON.stringify(webhooksSecret));
     if (!checkWebhooksSign) {
         return true;
