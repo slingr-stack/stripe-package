@@ -71,7 +71,7 @@ For more information about making HTTP calls, please refer to the documentation 
 
 ## Webhook
 
-Every time Stripe sends an event to the webhook URL (which needs to be configured in Stripe), this event will be triggered. The package takes care of verifying the signature if needed. The event's data is the raw content sent by Stripe. Check the [webhooks signatures](https://docs.stripe.com/api/events) documentation for more information.
+Every time Stripe sends an event to the webhook URL (which needs to be configured in Stripe), this event will be triggered. The package takes care of verifying the signature if needed. The event's data is the raw content sent by Stripe. Check the [webhooks](https://docs.stripe.com/api/events) documentation for more information.
 
 # About Slingr
 
