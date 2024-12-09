@@ -7,11 +7,7 @@ let httpReference = dependencies.http;
 let httpDependency = {
     get: httpReference.get,
     post: httpReference.post,
-    put: httpReference.put,
-    patch: httpReference.patch,
-    delete: httpReference.delete,
-    head: httpReference.head,
-    options: httpReference.options
+    delete: httpReference.delete,    
 };
 let httpService = {};
 
@@ -48,7 +44,7 @@ for (let key in httpDependency) {
  */
 exports.get = function (path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
-    return httpService.get(stripe(options), callbackData, callbacks);
+    return httpService.get(Stripe(options), callbackData, callbacks);
 };
 
 /**
@@ -68,41 +64,7 @@ exports.post = function (path, httpOptions, callbackData, callbacks) {
         "Content-Type": "application/x-www-form-urlencoded"
     });
     options.headers = headers;
-    return httpService.post(stripe(options), callbackData, callbacks);
-};
-
-/**
- * Sends an HTTP PUT request to the specified URL with the provided HTTP options.
- *
- * @param {string} path         - The path to send the PUT request to.
- * @param {object} httpOptions  - The options to be included in the PUT request check http-service documentation.
- * @param {object} callbackData - Additional data to be passed to the callback functions. [optional]
- * @param {object} callbacks    - The callback functions to be called upon completion of the POST request. [optional]
- * @return {object}             - The response of the PUT request.
- */
-exports.put = function (path, httpOptions, callbackData, callbacks) {
-    let options = checkHttpOptions(path, httpOptions);
-    let headers = options.headers || {};
-    sys.logs.debug('[stripe] Set header Content-Type');
-    headers = mergeJSON(headers, {
-        "Content-Type": "application/x-www-form-urlencoded"
-    });
-    options.headers = headers;
-    return httpService.put(stripe(options), callbackData, callbacks);
-};
-
-/**
- * Sends an HTTP PATCH request to the specified URL with the provided HTTP options.
- *
- * @param {string} path         - The path to send the PATCH request to.
- * @param {object} httpOptions  - The options to be included in the PATCH request check http-service documentation.
- * @param {object} callbackData - Additional data to be passed to the callback functions. [optional]
- * @param {object} callbacks    - The callback functions to be called upon completion of the POST request. [optional]
- * @return {object}             - The response of the PATCH request.
- */
-exports.patch = function (path, httpOptions, callbackData, callbacks) {
-    let options = checkHttpOptions(path, httpOptions);
-    return httpService.patch(stripe(options), callbackData, callbacks);
+    return httpService.post(Stripe(options), callbackData, callbacks);
 };
 
 /**
@@ -116,35 +78,7 @@ exports.patch = function (path, httpOptions, callbackData, callbacks) {
  */
 exports.delete = function (path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
-    return httpService.delete(stripe(options), callbackData, callbacks);
-};
-
-/**
- * Sends an HTTP HEAD request to the specified URL with the provided HTTP options.
- *
- * @param {string} path         - The path to send the HEAD request to.
- * @param {object} httpOptions  - The options to be included in the HEAD request check http-service documentation.
- * @param {object} callbackData - Additional data to be passed to the callback functions. [optional]
- * @param {object} callbacks    - The callback functions to be called upon completion of the HEAD request. [optional]
- * @return {object}             - The response of the HEAD request.
- */
-exports.head = function (path, httpOptions, callbackData, callbacks) {
-    let options = checkHttpOptions(path, httpOptions);
-    return httpService.head(stripe(options), callbackData, callbacks);
-};
-
-/**
- * Sends an HTTP OPTIONS request to the specified URL with the provided HTTP options.
- *
- * @param {string} path         - The path to send the OPTIONS request to.
- * @param {object} httpOptions  - The options to be included in the OPTIONS request check http-service documentation.
- * @param {object} callbackData - Additional data to be passed to the callback functions. [optional]
- * @param {object} callbacks    - The callback functions to be called upon completion of the OPTIONS request. [optional]
- * @return {object}             - The response of the OPTIONS request.
- */
-exports.options = function (path, httpOptions, callbackData, callbacks) {
-    let options = checkHttpOptions(path, httpOptions);
-    return httpService.options(stripe(options), callbackData, callbacks);
+    return httpService.delete(Stripe(options), callbackData, callbacks);
 };
 
 /****************************************************
@@ -183,7 +117,7 @@ let stringType = Function.prototype.call.bind(Object.prototype.toString)
  Configurator
  ****************************************************/
 
-let stripe = function (options) {
+let Stripe = function (options) {
     options = options || {};
     options = setApiUri(options);
     options = setRequestHeaders(options);
