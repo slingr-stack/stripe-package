@@ -47,7 +47,7 @@ This is the webhook signing secret configured in Stripe.
 
 # Javascript API
 
-You can make `GET`, `POST`, `PUT`, and `DELETE` requests to the [Stripe API](https://stripe.com/docs/api) like this:
+You can make `GET`, `POST`, and `DELETE` requests to the [Stripe API](https://stripe.com/docs/api) like this:
 
 Return a list of your customers. The customers are returned sorted by creation date, with the most recent customers appearing first:
 
