@@ -10,14 +10,6 @@ The Stripe package has the following features:
 - Shortcuts to access the Stripe API
 - Support for webhooks
 
-In most cases, you will use the provided shortcuts to access the API. For example, you could use the API directly by making an HTTP request like this:
-
-```js
-let res = pkg.stripe.api.get('/v1/customers');
-```
-
-For further details about the Stripe API, please take a look at the [Documentation.](https://docs.stripe.com/api)
-
 ## Configuration
 
 First, you will need to set up an account in Stripe. You can easily create a developer account and use it.  Once you have a Stripe account, you will be able to configure the package with the settings listed below.
@@ -82,18 +74,18 @@ const product = pkg.stripe.api.post('/v1/products', {
 Delete a product by id:
 
 ```js
-const deletedProduct = pkg.stripe.api.delete('/v1/products/prod_RMqjKzq47HizVm');
+const deletedProduct = pkg.stripe.api.delete('/v1/products/<id>');
 ```
 
 Update a product. Updates the specific product by setting the values of the parameters passed. Any parameters not provided will be left unchanged.
 
 ```js
-const updatedProduct = pkg.stripe.api.post('/v1/products/prod_RMqtS6zwl2C5p2', {
+const updatedProduct = pkg.stripe.api.post('/v1/products/<id>', {
   'metadata[order_id]': 14
 });
 ```
 
-The package automatically handles authentication, so there’s no need to worry about that.
+The package automatically handles authentication, so there’s no need to worry about that. For further details about the Stripe API, please take a look at the [Documentation.](https://docs.stripe.com/api)
 
 For more information about making HTTP calls, please refer to the documentation of the [HTTP service](https://github.com/slingr-stack/http-service).
 
