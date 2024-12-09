@@ -44,7 +44,7 @@ for (let key in httpDependency) {
  */
 exports.get = function (path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
-    return httpService.get(stripe(options), callbackData, callbacks);
+    return httpService.get(Stripe(options), callbackData, callbacks);
 };
 
 /**
@@ -64,7 +64,7 @@ exports.post = function (path, httpOptions, callbackData, callbacks) {
         "Content-Type": "application/x-www-form-urlencoded"
     });
     options.headers = headers;
-    return httpService.post(stripe(options), callbackData, callbacks);
+    return httpService.post(Stripe(options), callbackData, callbacks);
 };
 
 /**
@@ -78,7 +78,7 @@ exports.post = function (path, httpOptions, callbackData, callbacks) {
  */
 exports.delete = function (path, httpOptions, callbackData, callbacks) {
     let options = checkHttpOptions(path, httpOptions);
-    return httpService.delete(stripe(options), callbackData, callbacks);
+    return httpService.delete(Stripe(options), callbackData, callbacks);
 };
 
 /****************************************************
@@ -117,7 +117,7 @@ let stringType = Function.prototype.call.bind(Object.prototype.toString)
  Configurator
  ****************************************************/
 
-let stripe = function (options) {
+let Stripe = function (options) {
     options = options || {};
     options = setApiUri(options);
     options = setRequestHeaders(options);
