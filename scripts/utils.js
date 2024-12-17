@@ -5,10 +5,9 @@
  * @returns {boolean} True if the signature is valid, false otherwise.
  */
 exports.verifySignature = function (payload, sigHeader) {
-    let checkWebhooksSign = config.get("checkWebhooksSignature")
+    let checkWebhooksSign = JSON.parse(config.get("checkWebhooksSignature"))
     let webhooksSecret = config.get("webhooksSigningSecret")
     if (!checkWebhooksSign) {
-        sys.logs.warn("[stripe] Webhooks signature verification is disabled");
         return true;
     }
     sigHeader = sigHeader.split(',');
